@@ -7,6 +7,7 @@ require "Controller/HomeController.php";
 require "Controller/UsuarioController.php";
 require "Controller/JogoController.php";
 require "Controller/TorneioController.php";
+require "Controller/EquipeController.php";
 
 $pagina = $_GET['p'] ?? 'inicio';
 
@@ -15,6 +16,7 @@ $publicas = [
     'jogos',
     'jogo',
     'sobre',
+    'torneio',
     'login',
     'entrar',
     'cadastro',
@@ -39,8 +41,16 @@ match ($pagina) {
     'jogos'             => JogoController::listar(),
     'jogo'              => JogoController::ver(),
 
+    'torneio'           => TorneioController::ver(),
+    'meus-torneios'     => TorneioController::meus(),
     'novo-torneio'      => TorneioController::novo(),
     'salvar-torneio'    => TorneioController::salvar(),
+    'editar-torneio'    => TorneioController::editar(),
+    'atualizar-torneio' => TorneioController::atualizar(),
+    'excluir-torneio'   => TorneioController::excluir(),
+
+    'equipes'           => EquipeController::minhas(),
+    'inscrever-equipe'  => EquipeController::inscrever(),
 
     default             => HomeController::inicio(),
 };
